@@ -127,19 +127,23 @@ print (gogol_books_1835)
 #Task3
 
 class Fraction:
-    def init(self, numerator, denominator):
+    def __init__(self, numerator, denominator):
         if denominator == 0:
-        raise ZeroDivisionError("Denominator zero is not allowed.")
+            raise ZeroDivisionError("Denominator zero is not allowed.")
         self.numerator = numerator
         self.denominator = denominator
+#конструктор класу, що приймає чисельник та знаменник дробу, виводить ZeroDivisionError,
+якщо знаменник дорівнює нулю
+
+
     def __str__(self):
-        return f"{self.numerator}/{self.denominator}"
+        return f"{self.numerator}/{self.denominator}" #рядок
 
     def __repr__(self):
-        return f"Fraction({self.numerator}, {self.denominator})"
+        return f"Fraction({self.numerator}, {self.denominator})" #представлення об'єкту дробу у вигляді рядка
 
     def __eq__(self, other):
-        return self.numerator * other.denominator == self.denominator * other.numerator
+        return self.numerator * other.denominator == self.denominator * other.numerator #порівняння
 
     def __add__(self, other):
         numerator = self.numerator * other.denominator + self.denominator * other.numerator
@@ -154,42 +158,46 @@ class Fraction:
     def __mul__(self, other):
         numerator = self.numerator * other.numerator
         denominator = self.denominator * other.denominator
-        return Fraction.reduce(Fraction(numerator, denominator))
+        return Fraction.reduce(Fraction(numerator, denominator)) #множення
 
     def __truediv__(self, other):
         if other.numerator == 0:
             raise ZeroDivisionError("zero division is not allowed.")
         numerator = self.numerator * other.denominator
         denominator = self.denominator * other.numerator
-        return Fraction.reduce(Fraction(numerator, denominator))
+        return Fraction.reduce(Fraction(numerator, denominator)) #ділення
 
-    def __lt__(self, other):
-        return self.numerator * other.denominator < self.denominator * other.numerator
+    def __less__(self, other):
+        return self.numerator * other.denominator < self.denominator * other.numerator #порівняння
 
-    def __le__(self, other):
+    def __lesseq__(self, other):
         return self.numerator * other.denominator <= self.denominator * other.numerator
 
-    def __gt__(self, other):
+    def __greater__(self, other):
         return self.numerator * other.denominator > self.denominator * other.numerator
 
-    def __ge__(self, other):
+    def __greaterequal__(self, other):
         return self.numerator * other.denominator >= self.denominator * other.numerator
 
 @staticmethod
-def gcd(a, b):
+def greatest_common_d(a, b): #найбільше спільне ділення двох чисел
     while b:
         a, b = b, a % b
     return a
 
 @classmethod
-def reduce(cls, fraction):
-    gcd = cls.gcd(fraction.numerator, fraction.denominator)
-    numerator = fraction.numerator // gcd
-    denominator = fraction.denominator // gcd
+def reduce(cls, fraction): #скорочення дробу
+    greatest_common_d = cls.greatest_common_d(fraction.numerator, fraction.denominator)
+    numerator = fraction.numerator // greatest_common_d
+    denominator = fraction.denominator // greatest_common_d
     if denominator < 0:
         numerator, denominator = -numerator, -denominator
     return cls(numerator, denominator)
 
-def value(self):
+def value(self):#повертає значення дробу як десяткове число
     return self.numerator / self.denominator
 
+if __name__ == "__main__":
+    x = Fraction(1, 2)
+    y = Fraction(1, 4)
+    x + y == Fraction(3, 4)
