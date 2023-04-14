@@ -1,12 +1,11 @@
 #Task 1
 #Method overloading.
 #Create a base class named Animal with a method called talk and then create two subclasses: Dog and Cat, 
-and make their own implementation of the method talk be different.
- For instance, Dog’s can be to print ‘woof woof’, 
-while Cat’s can be to print ‘meow’.
-
-Also, create a simple generic function, 
-which takes as input instance of a Cat or Dog classes and performs talk method on input parameter. 
+#and make their own implementation of the method talk be different.
+#For instance, Dog’s can be to print ‘woof woof’, 
+#while Cat’s can be to print ‘meow’.
+#Also, create a simple generic function, 
+#which takes as input instance of a Cat or Dog classes and performs talk method on input parameter. 
 
 class Animal:
     def talk(self):
@@ -35,8 +34,6 @@ make_animal_talk(my_cat) #meow
 #Dog subclass is called and woof woof is preinted.
 #when called with my cat, the talk method of the Cat subclass is called
 #and the meow is printed. 
-
-
 
 #Task2
 #Library, Book, and Author classes with specified methods and attributes:
@@ -129,15 +126,14 @@ print (gogol_books_1835)
 
 #Task3
 
-
 class Fraction:
     def init(self, numerator, denominator):
-if denominator == 0:
-raise ZeroDivisionError("Denominator zero is not allowed.")
-self.numerator = numerator
-self.denominator = denominator
-def __str__(self):
-    return f"{self.numerator}/{self.denominator}"
+        if denominator == 0:
+        raise ZeroDivisionError("Denominator zero is not allowed.")
+        self.numerator = numerator
+        self.denominator = denominator
+    def __str__(self):
+        return f"{self.numerator}/{self.denominator}"
 
     def __repr__(self):
         return f"Fraction({self.numerator}, {self.denominator})"
