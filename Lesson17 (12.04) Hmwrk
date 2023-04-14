@@ -35,3 +35,93 @@ make_animal_talk(my_cat) #meow
 #Dog subclass is called and woof woof is preinted.
 #when called with my cat, the talk method of the Cat subclass is called
 #and the meow is printed. 
+
+
+
+#Task3
+#Library, Book, and Author classes with specified methods and attributes:
+
+class Library:
+    def __init__(self, name):
+        self.name = name
+        self.books = []
+        self.authors = []
+
+    def new_book(self, name, year, author):
+        book = Book(name, year, author)
+        self.books.append(book)
+        return book
+
+    def group_by_author(self, author):
+        return [book for book in self.books if book.author == author]
+
+    def group_by_year(self, year):
+        return [book for book in self.books if book.year == year]
+
+    def __repr__(self):
+        return f"Library({self.name})"
+
+    def __str__(self):
+        return f"{self.name} library with {len(self.books)} books"
+
+
+class Book:
+    total_books = 0
+
+    def __init__(self, name, year, author):
+        self.name = name
+        self.year = year
+        self.author = author
+        author.books.append(self)
+        Book.total_books += 1
+
+    def __repr__(self):
+        return f"Book({self.name}, {self.year}, {self.author})"
+
+    def __str__(self):
+        return f"{self.name} ({self.year}) written by {self.author.name}"
+
+
+class Author:
+    def __init__(self, name, country, birthday):
+        self.name = name
+        self.country = country
+        self.birthday = birthday
+        self.books = []
+
+    def __repr__(self):
+        return f"Author({self.name}, {self.country}, {self.birthday})"
+
+    def __str__(self):
+        return f"{self.name} from {self.country}, born on {self.birthday}"
+
+#створимо бiблiотеку
+my_library = Library ("My Library")
+#створюемо instance авторiв 
+shevchenko = Author("T.G.Shevchenko", "Ukraine", "March 9, 1814 ")
+gogol = Author("N.V.Gogol", "Ukraine", "April 1, 1809")
+
+#додамо книги
+
+kobzar = my_library.new_book("Kobzar", 1840, shevchenko)
+gaydamaky = my_library.new_book("Gaydamaky", 1841, shevchenko)
+zapovit = my_library.new_book("Zapovit", 1845, shevchenko)
+viy = my_library.new_book("Viy", 1835, gogol)
+dead_souls = my_library.new_book("Dead Souls",1835, gogol)
+
+#группування за автором
+
+shevchenko_books = my_library.group_by_author(shevchenko)
+gogol_books = my_library.group_by_author(gogol)
+
+#группування за роком видання
+
+gogol_books_1835 = my_library.group_by_year(1835)
+
+#вивести в принт бiблiотеку i iнформацiю про книжки
+print(my_library)
+print(kobzar)
+print(dead_souls)
+print(shevchenko_books)
+print(gogol_books)
+print (gogol_books_1835)
