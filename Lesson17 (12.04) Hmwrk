@@ -9,8 +9,8 @@
 
 class Animal:
     def talk(self):
-        raise NotImplementedError("Must be implemented by a sub class")
-    
+        #raise NotImplementedError("Must be implemented by a sub class")
+        pass #overriden by a subclasses as animals speak in their own way
 class Dog(Animal):
     def talk(self):
         print('woof woof')
@@ -22,18 +22,11 @@ class Cat(Animal):
 def make_animal_talk(animal):
     animal.talk()
 
-#animal base class has a method called talk which is not implemented
-#because we need cat and dog to speak in their own way
-#dog subclass prints woof woof and cat prints meow
-
 my_dog = Dog()
 my_cat = Cat()
 make_animal_talk(my_dog) #woof woof
 make_animal_talk(my_cat) #meow
-#when make_animal_talk is called with my_dog tha talk method of the
-#Dog subclass is called and woof woof is preinted.
-#when called with my cat, the talk method of the Cat subclass is called
-#and the meow is printed. 
+
 
 #Task2
 #Library, Book, and Author classes with specified methods and attributes:
